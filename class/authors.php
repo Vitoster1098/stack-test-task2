@@ -19,7 +19,8 @@ class Authors
     }
     //get all
     public function getAuthors() {
-        $sqlQuery = "SELECT `id`, `first_name`, `second_name`, `last_name`, `birthday` FROM " . $this->table_name . ";";
+        $sqlQuery = "SELECT `id`, `first_name`, `second_name`, `last_name`, `birthday` " .
+            "FROM " . $this->table_name;
         $stmt = $this->conn->prepare($sqlQuery);
         $stmt->execute();
         return $stmt;
@@ -41,7 +42,8 @@ class Authors
         $this->birthday = $dataRow['birthday'];
     }
     //create
-    public function createAuthor() {
+    public function createAuthor(): bool
+    {
         $sqlQuery = "INSERT INTO ". $this->table_name .
             " SET first_name = :first_name, 
                 second_name = :second_name, 
@@ -66,7 +68,8 @@ class Authors
         return false;
     }
     //update
-    public function updateAuthor() {
+    public function updateAuthor(): bool
+    {
         $sqlQuery = "UPDATE ". $this->table_name .
                     " SET first_name = :first_name, 
                         second_name = :second_name, 
@@ -93,7 +96,8 @@ class Authors
         return false;
     }
     //delete
-    public function deleteAuthor() {
+    public function deleteAuthor(): bool
+    {
         $sqlQuery = "DELETE FROM " . $this->table_name . " WHERE id = ?";
         $stmt = $this->conn->prepare($sqlQuery);
 

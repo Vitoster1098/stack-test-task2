@@ -10,7 +10,7 @@ class Database
     public $conn;
 
     // создание соединения с БД
-    public function getConnection()
+    public function getConnection(): ?PDO
     {
         $this->conn = null;
 
